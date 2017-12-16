@@ -19,27 +19,35 @@ class Song
   end
 
   def self.genres
-    @@genres.uniq
+    @@genres.uniq!
   end
 
   def self.artists
-    @@artists.uniq
+    @@artists.uniq!
   end
 
   def self.genre_count
-    genre_count = Hash.new(0)
-    @@genres.each do |word|
-      genre_count[word] += 1
+    genre_hash = {}
+    @@genres.each do |g|
+      if !genre_hash.has_key?(g)
+        genre_hash[g] = 1
+      else
+        genre_hash[g] += 1
+      end
     end
-    genre_count
+    genre_hash
   end
 
   def self.artist_count
-    artist_count = Hash.new(0)
-    @@artists.each do |word|
-      artist_count[word] += 1
+    artist_hash = {}
+    @@artists.each do |a|
+      if !artist_hash.has_key?(a)
+        artist_hash[a] = 1
+      else
+        artist_hash[a] += 1
+      end
     end
-    artist_count
+    artist_hash
   end
 
 end
